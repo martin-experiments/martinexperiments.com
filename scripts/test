@@ -1,0 +1,10 @@
+#!/bin/bash
+
+printf "Running tests:\n\n"
+
+./scripts/lint
+lintResult=$?
+
+echo "Finished tests."
+
+! (( $lintResult ))

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+printf "Building prod with webpack:\n\n"
+
+NODE_ENV=production \
+ME_PORT=8080 \
+ME_URL=http://martinexperiments.com \
+ME_FETCH_INTERVAL=30 \
+webpack --progress --colors
+
+printf "\nFinished build."
