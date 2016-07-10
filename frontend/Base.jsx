@@ -20,7 +20,7 @@ import App from './App/App.jsx'
 , 'ga'
 )
 
-window.ga('create', 'UA-53849837-1', 'auto')
+window.ga('create', 'UA-80585603-1', 'auto')
 
 ReactDOM.render(
   <App url={`${process.env.URL}`}/>
