@@ -95,10 +95,6 @@ class LandingPage extends React.Component {
   render() {
     const props = this.props
 
-    const blogs = props.blogs
-      ? props.blogs.map(this.blogMapper) 
-      : null
-
     return (
       <Page
         className='landing-page'
