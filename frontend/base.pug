@@ -16,8 +16,8 @@ html
 
     link(
       rel='stylesheet'
-      type='text/css'
-      href=[
+    , type='text/css'
+    , href=[
         'https://cdnjs.cloudflare.com'
       , 'ajax'
       , 'libs'
@@ -26,6 +26,12 @@ html
       , 'css'
       , 'materialize.min.css'
       ].join('/')
+    )
+
+    link(
+      rel='icon'
+    , type='image/x-icon'
+    , href='/favicon.png'
     )
   body
     #app

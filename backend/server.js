@@ -23,6 +23,7 @@ const httpServer = new HttpServer({
   baseJsPath: paths.BASE_JS
 , canonical: env.URL
 , contentManager: contentManager
+, faviconPath: paths.FAVICON
 , port: env.PORT
 , viewPath: paths.FRONTEND
 })

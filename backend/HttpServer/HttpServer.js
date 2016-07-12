@@ -12,6 +12,7 @@ class HttpServer {
   constructor(options) {
     this.viewPath = options.viewPath
     this.baseJsPath = options.baseJsPath
+    this.faviconPath = options.faviconPath
 
     this.contentManager = options.contentManager
 
@@ -27,7 +28,7 @@ class HttpServer {
     this.register(Vision, this.handleVisionRegister.bind(this))
     this.register(Inert)
 
-    this.get('/favicon.ico', this.handleGetFavicon.bind(this))
+    this.get('/favicon.png', this.handleGetFavicon.bind(this))
     this.get('/base.js', this.handleGetBaseJs.bind(this))
     this.get('/{path*}', this.handleGetWildcard.bind(this))
     this.get('/content', this.handleGetContent.bind(this))
@@ -81,7 +82,7 @@ class HttpServer {
   handleGetFavicon(request, response) {
     log('Serving favicon.')
 
-    response('success')
+    response.file(this.faviconPath)
   }
 
   handleGetWildcard(request, response) {
