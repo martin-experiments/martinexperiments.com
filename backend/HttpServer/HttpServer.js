@@ -95,22 +95,27 @@ class HttpServer {
 
     log('Is a blog post:', Boolean(blogPost), blogPost)
 
-    const data = blogPost
-      ? {
-          canonical: `${this.canonical}${path}`
-        , description: removeMarkdown(blogPost.summary)
-        , keywords: blogPost.tags
-            .map((tag) => {return tag.title})
-        , title: `${cm.get('globalElements.pageTitlePrefix')}${blogPost.title}`
-        }
-      : {
-          canonical: this.canonical
-        , description: cm.get('globalElements.description')
-        , keywords: cm
-            .get('globalElements.tags')
-            .map((tag) => {return tag.title})
-        , title: cm.get('globalElements.title')
-        }
+    let data
+
+    if (blogPost) {
+      data = {
+        canonical: `${this.canonical}${path}`
+      , description: removeMarkdown(blogPost.summary)
+      , keywords: Array.isArray(blogPost.tags)
+          ? blogPost.tags.map((tag) => {return tag.title})
+          : []
+      , title: `${cm.get('globalElements.pageTitlePrefix')}${blogPost.title}`
+      }
+    } else {
+      const tags = cm.get('globalElements.tags')
+
+      data = {
+        canonical: this.canonical
+      , description: cm.get('globalElements.description')
+      , keywords: Array.isArray(cm) ? tags.map((tag) => {return tag.title}) : []
+      , title: cm.get('globalElements.title')
+      }
+    }
 
     response.view('base', data)
   }
