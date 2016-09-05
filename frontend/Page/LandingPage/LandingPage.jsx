@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import 'dropcap.js'
 
 import AnimatedImage from '../../AnimatedImage/AnimatedImage.jsx'
+import ContentConsumer from '../../ContentConsumer/ContentConsumer.jsx'
 import Page from '../Page.jsx'
 
 import {web as log} from 'log'
@@ -14,21 +15,11 @@ import logo from './images/logo-negative.svg'
 
 import './landing-page.sass'
 
-class LandingPage extends React.Component {
+class LandingPage extends ContentConsumer {
   constructor(props) {
     super(props)
 
     this.blogMapper = this.blogMapper.bind(this)
-  }
-
-  getContent(path) {
-    log('Getting content:', path)
-    return _.get(this.props.content, path, null)
-  }
-
-  getGlobalElement(path) {
-    log('Getting global element:', path)
-    return _.get(this.props.globalElements, path, null)
   }
 
   componentDidMount() {
@@ -124,7 +115,9 @@ class LandingPage extends React.Component {
 
 LandingPage.propTypes = {
   content: React.PropTypes.object
+, children: React.PropTypes.any
 , globalElements: React.PropTypes.object
+, href: React.PropTypes.string
 , updateRoute: React.PropTypes.func.isRequired
 }
 

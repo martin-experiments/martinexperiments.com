@@ -1,26 +1,13 @@
-import _ from 'lodash'
 import React from 'react'
 import Helmet from 'react-helmet'
+
+import ContentConsumer from '../ContentConsumer/ContentConsumer.jsx'
 
 import {web as log} from 'log'
 
 import './page.sass'
 
-class Page extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  getContent(path) {
-    log('Getting content:', path)
-    return _.get(this.props.content, path, null)
-  }
-
-  getGlobalElement(path) {
-    log('Getting global element:', path)
-    return _.get(this.props.globalElements, path, null)
-  }
-
+class Page extends ContentConsumer {
   render() {
     const props = this.props
 
@@ -69,6 +56,8 @@ class Page extends React.Component {
       , content: props.description
       }
     ]
+
+    log('Generated meta tags:', meta)
       
     return (
       <section className={`container flow-text ${props.className}`}>

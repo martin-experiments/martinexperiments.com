@@ -112,7 +112,9 @@ class HttpServer {
       data = {
         canonical: this.canonical
       , description: cm.get('globalElements.description')
-      , keywords: Array.isArray(cm) ? tags.map((tag) => {return tag.title}) : []
+      , keywords: Array.isArray(tags)
+          ? tags.map((tag) => {return tag.title})
+          : []
       , title: cm.get('globalElements.title')
       }
     }
